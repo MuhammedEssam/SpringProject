@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,16 @@ public class UserController {
 	@GetMapping("/users/{UserId}")
 	public ResponseEntity<?> getUserById(@PathVariable Integer UserId) {
 		return userservice.findUserById(UserId);
+	}
+	
+	@PostMapping("/userByEmail")
+	public ResponseEntity<?> getUserByEmail(@Param(value = "email") String email){
+		return userservice.getUserByEmail(email);
+	}
+	
+	@PostMapping("/login")
+	public String login(@Param(value = "password") String password , @Param(value = "email") String email) {
+		return userservice.login(email, password);
 	}
 	
 }

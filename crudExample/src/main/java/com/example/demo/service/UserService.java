@@ -42,6 +42,27 @@ public class UserService {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST).badRequest().body("User not Found!!");
 		}
 	}
+	
+	public ResponseEntity<?> getUserByEmail(String email) {
+		try {
+			User user = repo.findByEmail(email);
+			return new ResponseEntity<>(HttpStatus.OK).ok(user.toString());
+		} catch (NullPointerException e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST).badRequest().body("User not Found!!");
+		}
+	}
+	
+	public String login (String email , String password) {
+		User user = repo.findByEmail(email);
+		if(user != null) {
+		if(pwdEncoder.matches(password, user.getPassword())) {
+			return "Access accepted credentials";
+		}
+		return "Wrong password or email";
+		}
+		return "User not found";
+	}
 
 	public void EncodePassword(User user) {
 		String EncodedPassword = pwdEncoder.encode(user.getPassword());
