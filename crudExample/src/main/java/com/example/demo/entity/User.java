@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "User")
 @Setter
 @Getter
+@Builder
 public class User {
 
 	@Id
