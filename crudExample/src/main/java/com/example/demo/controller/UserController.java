@@ -26,8 +26,7 @@ public class UserController {
 	static final String ROOT_PATH = "/usersApi";
 	private static final String GET_ALL_USERS = "/getUsers";
 
-	@Autowired
-	private UserService userservice;
+	private final UserService userservice;
 	
 	private final UserFacade userFacade;
 	
