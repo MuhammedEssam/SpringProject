@@ -19,13 +19,16 @@ import org.springframework.web.servlet.function.EntityResponse;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
-@RestController
+@RestController(UserController.ROOT_PATH)
 public class UserController {
+	
+	static final String ROOT_PATH = "/usersApi";
+	private static final String GET_ALL_USERS = "/getUsers";
 
 	@Autowired
 	private UserService userservice;
 	
-	@GetMapping("/users")
+	@GetMapping(GET_ALL_USERS)
 	 public List<User> getUsers(){
 		return (List<User>) userservice.findAll();
 	}
