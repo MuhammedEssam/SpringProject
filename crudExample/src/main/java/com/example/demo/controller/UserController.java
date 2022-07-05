@@ -28,6 +28,8 @@ public class UserController {
 	@Autowired
 	private UserService userservice;
 	
+	private final UserFacade userFacade;
+	
 	@GetMapping(GET_ALL_USERS)
 	 public List<User> getUsers(){
 		return (List<User>) userservice.findAll();
