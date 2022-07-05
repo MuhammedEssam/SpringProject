@@ -20,6 +20,7 @@ import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
 @RestController(UserController.ROOT_PATH)
+@RequiredArgsConstructor
 public class UserController {
 	
 	static final String ROOT_PATH = "/usersApi";
